@@ -21,7 +21,7 @@
     </div>
     <div class="row">
         <div class="col-md-6 progress">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-warning light" role="progressbar" aria-valuenow={{value}} aria-valuemin="0" aria-valuemax="1023"></div>
         </div>
         <div class="col-md-6">
             <span class="mx-auto" id="lightvalue"></span>
@@ -37,6 +37,7 @@
             cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"],["setPinMode", "digital", 4, "OUTPUT"]');
             value = cpf.get("a0");
             document.getElementById("lightvalue").innerHTML = value;
+            cpf.request('["digitalWrite", 4 , 1]');
             console.log(value);
         }
         if (value < 512) {
@@ -48,7 +49,7 @@
             document.getElementById("light").innerHTML = light;
             cpf.request('["digitalWrite", 4 , 0]');
         }
-        setTimeout(loop, 1000);
+        setTimeout(loop, 500);
     }
     loop();
 </script>
