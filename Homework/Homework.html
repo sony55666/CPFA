@@ -36,23 +36,19 @@
     var value;
     setup();
 
-
     function loop() {
         if (cpf) {
             value = cpf.get("light sensor");
             document.getElementById("lightvalue").innerHTML = value;
+            if (value <= 512) {
+                light = "亮度不足";
+            } else {
+                light = "亮度充足";
+            }
             document.getElementById("light").innerHTML = light;
             cpf.set("white led", power) = 1;
         }
-        console.log("value");
-        if (value <= 512) {
-            // cpf.set("white led", power) = 1;
-            light = "亮度不足";
-        } else {
-            // cpf.set("white led", power) = 0;
-            light = "亮度充足";
-        }
-        setTimeout(loop, 1000);
+        setTimeout(loop(), 1000);
     }
     loop();
 
