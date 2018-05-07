@@ -33,17 +33,16 @@
     setup();
     // cpf.setPinMode('["setPinMode", "analog", 0, "INPUT"],["setPinMode", "analog", 1,"INPUT"]');
     // var lightValue = 511
-    document.getElementById("lightValue").innerHTML = value;
-    var light = "亮度不足";
+    var light = "";
     console.log(light);
-    document.getElementById("light").innerHTML = light;
-    cpf.set("white led", power) = 1;
+
 
     function loop() {
         if (cpf) {
             var value = cpf.get("light sensor");
             document.getElementById("lightvalue").innerHTML = value;
-
+            document.getElementById("light").innerHTML = light;
+            cpf.set("white led", power) = 1;
         }
         console.log("value");
         if (value <= 512) {
