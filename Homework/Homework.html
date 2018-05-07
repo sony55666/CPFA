@@ -17,13 +17,10 @@
         </h1>
     </div>
     <div class="nav">
-        <img class="mx-auto wh-10" src="img/rgb.png" />
+        <img id="img" class="mx-auto" src="img/rgb.png" alt="">
     </div>
     <div class="row">
-        <div class="col-md-6 progress">
-
-        </div>
-        <div class="col-md-6">
+        <div class="col-md-6 offset-6">
             <span class="mx-auto" id="lightvalue"></span>
             <p id="light"></p>
         </div>
@@ -32,7 +29,6 @@
 <script>
     var value;
     var light;
-
     setup();
 
     function setup() {
@@ -51,10 +47,12 @@
                 cpf.request('["digitalWrite", 4 , 1]');
                 light = "亮度不足";
                 document.getElementById("light").innerHTML = light;
+                document.getElementById("img").src = "img/rgbon.png";
             } else {
                 cpf.request('["digitalWrite", 4 , 0]');
                 light = "亮度充足";
                 document.getElementById("light").innerHTML = light;
+                document.getElementById("img").src = "img/rgb.png";
             }
         }
         setTimeout(loop, 100);
