@@ -25,13 +25,13 @@
         </div>
         <div class="col-md-6">
             <span class="mx-auto" id="lightvalue"></span>
-            <!-- <p id="light"></p> -->
+            <p id="light"></p>
         </div>
     </div>
 </body>
 <script>
     var value;
-    // var light;
+    var light;
 
     setup();
 
@@ -49,15 +49,15 @@
 
             if (value < 512) {
                 cpf.request('["digitalWrite", 4 , 1]');
-                // light = "亮度不足";
-                // document.getElementById("light").innerHTML = light;
+                light = "亮度不足";
+                document.getElementById("light").innerHTML = light;
             } else {
                 cpf.request('["digitalWrite", 4 , 0]');
-                // light = "亮度充足";
-                // document.getElementById("light").innerHTML = light;
+                light = "亮度充足";
+                document.getElementById("light").innerHTML = light;
             }
         }
-        setTimeout(loop, 200);
+        setTimeout(loop, 100);
     }
     loop();
 </script>
