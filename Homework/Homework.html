@@ -24,8 +24,8 @@
             <div class="progress-bar bg-warning" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
         <div class="col-md-6">
-            <span class="mx-auto" id="lightValue">12</span>
-            <p id="light">11</p>
+            <span class="mx-auto" id="lightvalue">none</span>
+            <p id="light">none</p>
         </div>
     </div>
 </body>
@@ -40,7 +40,7 @@
     function loop() {
         if (cpf) {
             value = cpf.get("light sensor");
-            document.getElementById("lightValue").innerHTML = value;
+            document.getElementById("lightvalue").innerHTML = value;
             document.getElementById("light").innerHTML = light;
             cpf.set("white led", power) = 1;
         }
