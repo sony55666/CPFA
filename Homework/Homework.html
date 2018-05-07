@@ -21,7 +21,7 @@
     </div>
     <div class="row">
         <div class="col-md-6 progress">
-            <div class="progress-bar bg-warning light" role="progressbar" aria-valuenow={{value}} aria-valuemin="0" aria-valuemax="1023"></div>
+
         </div>
         <div class="col-md-6">
             <span class="mx-auto" id="lightvalue"></span>
@@ -48,15 +48,15 @@
             document.getElementById("lightvalue").innerHTML = value;
             console.log(value);
 
-        }
-        if (value < 512) {
-            cpf.request('["digitalWrite", 4 , 1]');
-            light = "亮度不足";
-            document.getElementById("light").innerHTML = light;
-        } else {
-            cpf.request('["digitalWrite", 4 , 0]');
-            light = "亮度充足";
-            document.getElementById("light").innerHTML = light;
+            if (value < 512) {
+                cpf.request('["digitalWrite", 4 , 1]');
+                light = "亮度不足";
+                document.getElementById("light").innerHTML = light;
+            } else {
+                cpf.request('["digitalWrite", 4 , 0]');
+                light = "亮度充足";
+                document.getElementById("light").innerHTML = light;
+            }
         }
         setTimeout(loop, 500);
     }
