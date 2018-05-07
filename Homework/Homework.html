@@ -24,15 +24,12 @@
             <div class="progress-bar bg-warning" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
         <div class="col-md-6">
-            <span class="mx-auto" id="lightvalue">none</span>
-            <p id="light">none</p>
+            <span class="mx-auto" id="lightvalue"></span>
+            <p id="light"></p>
         </div>
     </div>
 </body>
 <script>
-    // cpf.setPinMode('["setPinMode", "analog", 0, "INPUT"],["setPinMode", "analog", 1,"INPUT"]');
-    // var lightValue = 511
-
     function loop() {
         if (cpf) {
             var value;
