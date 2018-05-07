@@ -30,28 +30,33 @@
     </div>
 </body>
 <script>
+    var value;
+    var light;
+
+    setup();
+
     function setup() {
-        cpf.setPinMode('["resetPin"],["setPinMode", "digital", 4, "OUTPUT"]');
-        cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"]');
+        if (cpf) {
+            cpf.setPinMode('["resetPin"],["setPinMode", "digital", 4, "OUTPUT"]');
+            cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"]');
+        }
     }
 
     function loop() {
         if (cpf) {
-            var value;
-            var light;
             value = cpf.get("a0");
             document.getElementById("lightvalue").innerHTML = value;
             console.log(value);
 
         }
         if (value < 512) {
+            cpf.request('["digitalWrite", 4 , 1]');
             light = "亮度不足";
             document.getElementById("light").innerHTML = light;
-            cpf.request('["digitalWrite", 4 , 1]');
         } else {
+            cpf.request('["digitalWrite", 4 , 0]');
             light = "亮度充足";
             document.getElementById("light").innerHTML = light;
-            cpf.request('["digitalWrite", 4 , 0]');
         }
         setTimeout(loop, 500);
     }
