@@ -42,11 +42,9 @@
         if (value < 512) {
             light = "亮度不足";
             document.getElementById("light").innerHTML = light;
-            cpf.request('["digitalWrite", < 4 >, < 1 >]');
         } else {
             light = "亮度充足";
             document.getElementById("light").innerHTML = light;
-            cpf.request('["digitalWrite", < 4 >, < 0 >]');
         }
         setTimeout(loop, 1000);
     }
