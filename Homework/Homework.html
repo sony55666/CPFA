@@ -37,6 +37,7 @@
     var light = "亮度不足";
     console.log(light);
     document.getElementById("light").innerHTML = light;
+    cpf.set("white led", power) = 1;
 
     function loop() {
         if (cpf) {
@@ -46,13 +47,13 @@
         }
         console.log("value");
         if (value <= 512) {
-            cpf.set("white led", power) = 1;
+            // cpf.set("white led", power) = 1;
             light = "亮度不足";
         } else {
-            cpf.set("white led", power) = 0;
+            // cpf.set("white led", power) = 0;
             light = "亮度充足";
         }
-
+        setTimeout(loop, 1000);
     }
     loop();
 
