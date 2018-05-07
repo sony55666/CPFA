@@ -30,16 +30,16 @@
     </div>
 </body>
 <script>
-    setup();
     // cpf.setPinMode('["setPinMode", "analog", 0, "INPUT"],["setPinMode", "analog", 1,"INPUT"]');
     // var lightValue = 511
-    var light = "";
-    console.log(light);
+    var light = "我要當老師";
+    var value;
+    setup();
 
 
     function loop() {
         if (cpf) {
-            var value = cpf.get("light sensor");
+            value = cpf.get("light sensor");
             document.getElementById("lightValue").innerHTML = value;
             document.getElementById("light").innerHTML = light;
             cpf.set("white led", power) = 1;
@@ -58,7 +58,7 @@
 
     function setup() {
         if (cpf)
-            cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"],["setPinMode", "analog", 1,"INPUT"]');
+            cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"],["setPinMode", "analog", 1,"OUTPUT"]');
     }
 </script>
 
