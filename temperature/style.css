@@ -27,7 +27,7 @@ body {
     transform: translateX(-50%);
 }
 
-#pointer {
+.images #pointer {
     position: absolute;
     width: 30%;
     bottom: 2px;
