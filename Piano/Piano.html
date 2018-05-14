@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>五月九號作業</title>
+</head>
+
+<body>
+    <div class="nav">
+        <h1 class="mx-auto my-5">
+            鋼琴
+        </h1>
+    </div>
+    <div>
+        <div class="row">
+            <div class="offset-2"></div>
+            <input class="key col-1 col-md-1" type="button" onclick="m_do()" value="do">
+            <input class="key col-1 col-md-1" type="button" onclick="m_re()" value="re">
+            <input class="key col-1 col-md-1" type="button" onclick="m_mi()" value="mi">
+            <input class="key col-1 col-md-1" type="button" onclick="m_fa()" value="fa">
+            <input class="key col-1 col-md-1" type="button" onclick="m_so()" value="so">
+            <input class="key col-1 col-md-1" type="button" onclick="m_la()" value="la">
+            <input class="key col-1 col-md-1" type="button" onclick="m_si()" value="si">
+            <input class="key col-1 col-md-1" type="button" onclick="m_hdo()" value="do">
+        </div>
+    </div>
+    <input class="img mx-auto" type="image" src="img/rgbon.png" onclick="music()">
+</body>
+<script>
+    var melody;
+
+    setup();
+
+    function setup() {
+        if (cpf) {
+            cpf.setPinMode('["resetPin"],["setPinMode", "digital", 4, "TONE"]');
+        }
+    }
+
+    function m_do() {
+        if (cpf) {
+            cpf.request('["tone_play", 6, 261, 300]')
+        }
+
+    }
+
+    function m_re() {
+        if (cpf) {
+            cpf.request('["tone_play", 6, 293, 300]')
+        }
+
+    }
+
+    function m_mi() {
+        if (cpf) {
+            cpf.request('["tone_play", 6, 329, 300]')
+        }
+
+    }
+
+    function m_fa() {
+        if (cpf) {
+            cpf.request('["tone_play", 6, 349, 300]')
+        }
+
+    }
+
+    function m_so() {
+        if (cpf) {
+            cpf.request('["tone_play", 6, 392, 300]')
+        }
+
+    }
+
+    function m_la() {
+        if (cpf) {
+            cpf.request('["tone_play", 6, 440, 300]')
+        }
+
+    }
+
+    function m_si() {
+        if (cpf) {
+            cpf.request('["tone_play", 6, 493, 300]')
+        }
+
+    }
+
+    function m_hdo() {
+        if (cpf) {
+            cpf.request('["tone_play", 6, 523, 300]')
+        }
+
+    }
+
+    function music() {
+        if (cpf) {
+            cpf.request('["tone_play", 4, 261, 300],["sleep", 300],["tone_play", 4, 293, 300],["sleep", 300],["tone_play", 4, 329, 300],["sleep", 300],["tone_play", 4, 349, 300],["sleep", 300],["tone_play", 4, 392, 300],["sleep", 300],["tone_play", 4, 440, 300],["sleep", 300],["tone_play", 4, 493, 300],["sleep", 300],["tone_play", 4, 349, 523]');
+        }
+    }
+</script>
+
+</html>
