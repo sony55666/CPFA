@@ -30,88 +30,89 @@
         </div>
     </div>
     <input class="img mx-auto" type="image" src="img/rgbon.png" onclick="music()">
+
+    <script>
+        var melody;
+
+        setup();
+
+        function setup() {
+            if (cpf) {
+                cpf.setPinMode('["resetPin"],["setPinMode", "digital", 4, "TONE"] ');
+            }
+        }
+
+        function m_do() {
+            if (cpf) {
+                cpf.request('["tone_play", 4, 261, 300]');
+                console.log("do")
+            }
+
+        }
+
+        function m_re() {
+            if (cpf) {
+                cpf.request('["tone_play", 4, 293, 300]');
+                console.log("re")
+            }
+
+        }
+
+        function m_mi() {
+            if (cpf) {
+                cpf.request('["tone_play", 4, 329, 300]');
+                console.log("mi")
+            }
+
+        }
+
+        function m_fa() {
+            if (cpf) {
+                cpf.request('["tone_play", 4, 349, 300]');
+                console.log("fa")
+            }
+
+        }
+
+        function m_so() {
+            if (cpf) {
+                cpf.request('["tone_play", 4, 392, 300]');
+                console.log("so")
+            }
+
+        }
+
+        function m_la() {
+            if (cpf) {
+                cpf.request('["tone_play", 4, 440, 300]');
+                console.log("la")
+            }
+
+        }
+
+        function m_si() {
+            if (cpf) {
+                cpf.request('["tone_play", 4, 493, 300]');
+                console.log("si")
+            }
+
+        }
+
+        function m_hdo() {
+            if (cpf) {
+                cpf.request('["tone_play", 4, 523, 300]');
+                console.log("hdo")
+            }
+
+        }
+
+        function music() {
+            if (cpf) {
+                cpf.request('["tone_play", 4, 261, 300],["sleep", 300],["tone_play", 4, 293, 300],["sleep", 300],["tone_play", 4, 329, 300],["sleep", 300],["tone_play", 4, 349, 300],["sleep", 300],["tone_play", 4, 392, 300],["sleep", 300],["tone_play", 4, 440, 300],["sleep", 300],["tone_play", 4, 493, 300],["sleep", 300],["tone_play", 4, 349, 523]');
+                console.log("music")
+            }
+        }
+    </script>
 </body>
-<script>
-    var melody;
-
-    setup();
-
-    function setup() {
-        if (cpf) {
-            cpf.setPinMode('["resetPin"],["setPinMode", "digital", 4, "TONE"] ');
-        }
-    }
-
-    function m_do() {
-        if (cpf) {
-            cpf.request('["tone_play", 4, 261, 300]');
-            console.log("do")
-        }
-
-    }
-
-    function m_re() {
-        if (cpf) {
-            cpf.request('["tone_play", 4, 293, 300]');
-            console.log("re")
-        }
-
-    }
-
-    function m_mi() {
-        if (cpf) {
-            cpf.request('["tone_play", 4, 329, 300]');
-            console.log("mi")
-        }
-
-    }
-
-    function m_fa() {
-        if (cpf) {
-            cpf.request('["tone_play", 4, 349, 300]');
-            console.log("fa")
-        }
-
-    }
-
-    function m_so() {
-        if (cpf) {
-            cpf.request('["tone_play", 4, 392, 300]');
-            console.log("so")
-        }
-
-    }
-
-    function m_la() {
-        if (cpf) {
-            cpf.request('["tone_play", 4, 440, 300]');
-            console.log("la")
-        }
-
-    }
-
-    function m_si() {
-        if (cpf) {
-            cpf.request('["tone_play", 4, 493, 300]');
-            console.log("si")
-        }
-
-    }
-
-    function m_hdo() {
-        if (cpf) {
-            cpf.request('["tone_play", 4, 523, 300]');
-            console.log("hdo")
-        }
-
-    }
-
-    function music() {
-        if (cpf) {
-            cpf.request('["tone_play", 4, 261, 300],["sleep", 300],["tone_play", 4, 293, 300],["sleep", 300],["tone_play", 4, 329, 300],["sleep", 300],["tone_play", 4, 349, 300],["sleep", 300],["tone_play", 4, 392, 300],["sleep", 300],["tone_play", 4, 440, 300],["sleep", 300],["tone_play", 4, 493, 300],["sleep", 300],["tone_play", 4, 349, 523]');
-            console.log("music")
-        }
-    }
-</script>
 
 </html>
