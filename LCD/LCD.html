@@ -34,8 +34,6 @@
                     console.log(speed);
                     cpf.request(`["analogWrite", 6, ${speed}]`);
                     cpf.request(`["grove_setColorRGB", 0, ${speed}, ${speed}, ${speed}]`);
-                    cpf.request(`["analogWrite", 6, ${light}]`);
-                    cpf.request(`["grove_setColorRGB", 0, ${light}, ${light}, ${light}]`);
                 }
             }
             setTimeout(loop, 1000);
