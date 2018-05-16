@@ -31,8 +31,8 @@
         function loop() {
             if (cpf) {
                 for (speed = 0; speed <= 255; speed++) {
-                    cpf.set('["analogWrite", 6, speed)]');
-                    cpf.request('["grove_setColorRGB", 0, speed, speed, speed]');
+                    cpf.set('["analogWrite", 6, ${speed})]');
+                    cpf.request(`["grove_setColorRGB", 0, ${speed}, ${speed}, ${speed}]`);
                 }
             }
             setTimeout(loop, 1000);
