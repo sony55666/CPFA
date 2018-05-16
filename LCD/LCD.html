@@ -23,19 +23,21 @@
 
         function setup() {
             if (cpf) {
-                cpf.setPinMode('["resetPin"],["setPinMode", "digital", 6, "PWM"]');
+                cpf.setPinMode('["resetPin"],["setPinMode", "digital", 6, "PWM"],["grove_newChainableLED", 4, 5, 1]');
             }
         }
-        loop();
+
 
         function loop() {
             if (cpf) {
                 for (speed = 0; speed <= 255; speed++) {
-                    cpf.set("fan", speed);
+                    cpf.set('["analogWrite", 6, speed)]');
+                    cpf.request('["grove_setColorRGB", 0, speed, speed, speed]');
                 }
             }
             setTimeout(loop, 1000);
         }
+        loop();
     </script>
 
 
