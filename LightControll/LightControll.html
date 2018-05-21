@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <title>五月二十一號作業</title>
+</head>
+
+<body>
+    <div class="nav">
+        <h1 class="mx-auto my-5">
+            語音
+        </h1>
+    </div>
+    <div class="nav">
+        <button id="clickbtn" class="mx-auto my-5 p-5">呼叫AI</button>
+    </div>
+    <div class="nav">
+        <img id="img" class="mx-auto" src="img/rgb.png" alt="">
+    </div>
+</body>
+<script>
+    var clickbtn = document.getElementById(clickbtn);
+    setup();
+    cpf.request('["analogWrite", 6, 0]');
+
+    clickbtn.addEventListener('click', function (event) {
+        cpf.initSpeechRecognition("cmn-Hant-TW");
+    });
+
+    function GetRecognizeResult(Result, Type) {
+        if (Result.includes("好暗") || Request.includes("房間好暗")) {
+            document.getElementById("words").innerHTML = Result;
+            cpf.SetSpeech("On", "cmn-Hant-TW", "燈已開啟", 1, 2);
+            for (i = 0; i < 255; 1 += 10) {
+                cpf.request('["analogWrite", 6, ' + i + ']');
+            }
+        } else if (Result.includes("好亮") || Result.includes("房間好亮")) {
+            document.getElementById("words").innerHTML = Result;
+            cpf.SetSpeech("On", "cmn-Hant-TW", "燈已關閉", 1, 1);
+            cpf.request('["analogWrite", 6, 0]');
+        }
+    }
+
+    function setup() {
+        if (cpf) {
+            cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 6, "PWM"]');
+        }
+    }
+
+</script>
+
+</html>
