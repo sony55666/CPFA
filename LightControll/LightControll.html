@@ -37,7 +37,7 @@
         if (Result.includes("好暗") || Request.includes("房間好暗")) {
             document.getElementById("words").innerHTML = Result;
             cpf.SetSpeech("On", "cmn-Hant-TW", "燈已開啟", 1, 2);
-            for (i = 0; i < 255; 1 += 10) {
+            for (i = 0; i < 255; i += 10) {
                 cpf.request('["analogWrite", 6, ' + i + ']');
             }
         } else if (Result.includes("好亮") || Result.includes("房間好亮")) {
