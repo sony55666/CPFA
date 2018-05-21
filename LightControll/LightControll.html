@@ -21,6 +21,9 @@
         <button id="clickbtn" class="mx-auto my-5 p-5">呼叫AI</button>
     </div>
     <div class="nav">
+        <p id="words" class="mx-auto">none</p>
+    </div>
+    <div class="nav">
         <img id="img" class="mx-auto" src="img/rgb.png" alt="">
     </div>
 </body>
@@ -34,7 +37,7 @@
     });
 
     function GetRecognizeResult(Result, Type) {
-        if (Result.includes("好暗") || Request.includes("房間好暗")) {
+        if (Result.includes("好暗") || Result.includes("房間好暗")) {
             document.getElementById("words").innerHTML = Result;
             cpf.SetSpeech("On", "cmn-Hant-TW", "燈已開啟", 1, 2);
             for (i = 0; i < 255; i += 10) {
