@@ -29,35 +29,36 @@
 
 
     <script>
-            var clickbtn = document.getElementById(clickbtn);
-            setup();
-            cpf.request('["analogWrite", 6, 0]');
-        
-            clickbtn.addEventListener('click', function (event) {
-                cpf.initSpeechRecognition("cmn-Hant-TW");
-            });
-        
-            function GetRecognizeResult(Result, Type) {
-                if (Result.includes("好暗") || Result.includes("房間好暗")) {
-                    document.getElementById("words").innerHTML = Result;
-                    cpf.SetSpeech("On", "cmn-Hant-TW", "燈已開啟", 1, 2);
-                    for (i = 0; i < 255; i += 10) {
-                        cpf.request('["analogWrite", 6, ' + i + ']');
-                    }
-                } else if (Result.includes("好亮") || Result.includes("房間好亮")) {
-                    document.getElementById("words").innerHTML = Result;
-                    cpf.SetSpeech("On", "cmn-Hant-TW", "燈已關閉", 1, 1);
-                    cpf.request('["analogWrite", 6, 0]');
+        var clickbtn = document.getElementById("clickbtn");
+        setup();
+        cpf.request('["analogWrite", 6, 0');
+
+        clickbtn.addEventListener('click', function (event) {
+            cpf.initSpeechRecognition("cmn-Hant-TW");
+            console.log("按按鈕");
+        });
+
+        function GetRecognizeResult(Result, Type) {
+            if (Result.includes("好暗") || Result.includes("房間好暗")) {
+                document.getElementById("words").innerHTML = Result;
+                cpf.SetSpeech("On", "cmn-Hant-TW", "燈已開啟", 1, 2);
+                for (i = 0; i < 255; i += 10) {
+                    cpf.request('["analogWrite", 6, ' + i + ']');
                 }
+            } else if (Result.includes("好亮") || Result.includes("房間好亮")) {
+                document.getElementById("words").innerHTML = Result;
+                cpf.SetSpeech("On", "cmn-Hant-TW", "燈已關閉", 1, 1);
+                cpf.request('["analogWrite", 6, 0]');
             }
-        
-            function setup() {
-                if (cpf) {
-                    cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 6, "PWM"]');
-                }
+        }
+
+        function setup() {
+            if (cpf) {
+                cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 6, "PWM"]');
             }
-        
-        </script>
+        }
+
+    </script>
 </body>
 
 
