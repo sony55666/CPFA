@@ -35,6 +35,8 @@
 
         clickbtn.addEventListener('click', function (event) {
             cpf.initSpeechRecognition("cmn-Hant-TW");
+            cpf.request('["grove_rgblcd_clear"]');
+            cpf.request('["grove_rgblcd_print", 0, 1, "Hello World"]');
             console.log("按按鈕");
         });
 
@@ -50,11 +52,22 @@
                 cpf.SetSpeech("On", "cmn-Hant-TW", "燈已關閉", 1, 1);
                 cpf.request('["analogWrite", 6, 0]');
             }
+
+            if (Result.includes("日期") || Result.includes("今天幾號")) {
+                var day = new Date();
+
+                document.getElementById("words").innerHTML = "今天日期是" + day.getFullYear() + "年" + (day.getMonth() + 1) + "月" + day.getDate() + "日";
+                cpf.SetSpeech("On", "cmn-Hant-TW", "今天日期是" + day.getFullYear() + "年" + (day.getMonth() + 1) + "月" + day.getDate() + "日", 1, 1);
+                
+                cpf.request('["grove_rgblcd_set_rgb", 0, 255, 0]');
+                cpf.request('["grove_rgblcd_clear"]');
+                cpf.request('["grove_rgblcd_print", 0, 1, "'+ day.getFullYear() + "/" +(day.getMonth()+1)+ "/" +day.getDate()+'"]');
+            }
         }
 
         function setup() {
             if (cpf) {
-                cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 6, "PWM"]');
+                cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 6, "PWM"],["grove_rgblcd_begin", 16, 2]');
             }
         }
 
