@@ -57,11 +57,10 @@
                 cpf.initSpeechRecognition("cmn-Hant-TW");
                 cpf.SetSpeech("On", "cmn-Hant-TW", "您好  目前外面的溫度為 ${tempValue} 濕度${humidity}", 1, 1);
                 console.log("您好  目前外面的溫度為 ${tempValue} 濕度${humidity}");
-                setTimeout(4000);
             } else {
 
             }
-            setTimeout("loop()", 1000);
+            setTimeout("loop()", 9000);
         }
 
         loop();
