@@ -46,8 +46,9 @@
             pir = cpf.get("d2");
             tempValue = cpf.get("DHT11", "d6", "dht11temp");
             humidity = cpf.get("DHT11", "d6", "dht11humi");
-            document.getElementById("temp") = tempValue;
-            document.getElementById("humi") = humidity;
+            document.getElementById("temp").innerHTML = tempValue;
+            document.getElementById("humi").innerHTML = humidity;
+            document.getElementById("pir").innerHTML = pir;
             console.log(pir);
             console.log(tempValue);
             console.log(humidity);
