@@ -55,7 +55,7 @@
 
             if (pir == 1) {
                 cpf.initSpeechRecognition("cmn-Hant-TW");
-                cpf.SetSpeech("Off", "cmn-Hant-TW", "您好  目前外面的溫度為 $('#temp') 濕度$('#humi')", 1, 1);
+                cpf.SetSpeech("Off", "cmn-Hant-TW", `您好，目前外面的溫度為 ${'#temp'} 濕度${'#humi'}`, 1, 1);
                 console.log("您好  目前外面的溫度為 $('#temp') 濕度$('#humi')");
             } else {
 
