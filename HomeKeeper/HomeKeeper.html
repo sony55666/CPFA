@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
-    <title>五月二十一號作業</title>
+    <title>智慧管家</title>
 </head>
 
 <body>
@@ -16,10 +16,21 @@
         <h1 class="mx-auto my-5">
             智慧管家
         </h1>
-        <h1 class="mx-auto my-5" id="temp">
-            none
+    </div>
+    <div class="row">
+        <h1 class="mx-auto my-5">
+            溫度:
+            <span id="temp">
+                none
+            </span>
         </h1>
-        <h1 class="mx-auto my-5" id="humi">
+        <h1 class="mx-auto my-5">
+            濕度:
+            <span id="humi">
+                none
+            </span>
+        </h1>
+        <h1 class="mx-auto my-5" id="pir">
             none
         </h1>
     </div>
@@ -27,25 +38,29 @@
 
     <script>
         setup();
-        var tempValue = document.getElementById("temp");
-        var humidity = document.getElementById("humi");
+        var tempValue;
+        var humidity;
+        var pir;
 
-        
         function loop() {
-            var PIR = cpf.get("d2");
+            pir = cpf.get("d2");
             tempValue = cpf.get("DHT11", "d6", "dht11temp");
             humidity = cpf.get("DHT11", "d6", "dht11humi");
-            console.log(PIR);
+            document.getElementById("temp") = tempValue;
+            document.getElementById("humi") = humidity;
+            console.log(pir);
             console.log(tempValue);
             console.log(humidity);
 
-            if (PIR == 1) {
+            if (pir == 1) {
                 cpf.initSpeechRecognition("cmn-Hant-TW");
                 cpf.SetSpeech("On", "cmn-Hant-TW", "您好  目前外面的溫度為 ${tempValue} 濕度${humidity}", 1, 1);
                 console.log("您好  目前外面的溫度為 ${tempValue} 濕度${humidity}");
+                setTimeout(4000);
             } else {
-                console.log("error");
+
             }
+            setTimeout("loop()", 1000);
         }
 
         loop();
