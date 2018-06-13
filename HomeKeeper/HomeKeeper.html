@@ -26,25 +26,29 @@
 
 
     <script>
+        setup();
         var tempValue = document.getElementById("temp");
         var humidity = document.getElementById("humi");
 
-        setup();
-        var PIR = cpf.get("d2");
-        tempValue = cpf.get("DHT11", "d6", "dht11temp");
-        humidity = cpf.get("DHT11", "d6", "dht11humi");
-        console.log(PIR);
-        console.log(tempValue);
-        console.log(humidity);
+        
+        function loop() {
+            var PIR = cpf.get("d2");
+            tempValue = cpf.get("DHT11", "d6", "dht11temp");
+            humidity = cpf.get("DHT11", "d6", "dht11humi");
+            console.log(PIR);
+            console.log(tempValue);
+            console.log(humidity);
 
-        if (PIR == 1) {
-            cpf.initSpeechRecognition("cmn-Hant-TW");
-            cpf.SetSpeech("On", "cmn-Hant-TW", "您好  目前外面的溫度為 ${tempValue} 濕度${humidity}", 1, 1);
-            console.log("您好  目前外面的溫度為 ${tempValue} 濕度${humidity}");
-        } else {
-            console.log("error");
+            if (PIR == 1) {
+                cpf.initSpeechRecognition("cmn-Hant-TW");
+                cpf.SetSpeech("On", "cmn-Hant-TW", "您好  目前外面的溫度為 ${tempValue} 濕度${humidity}", 1, 1);
+                console.log("您好  目前外面的溫度為 ${tempValue} 濕度${humidity}");
+            } else {
+                console.log("error");
+            }
         }
-        cpf.repeat();
+
+        loop();
 
         function setup() {
             if (cpf) {
