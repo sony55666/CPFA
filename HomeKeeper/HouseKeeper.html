@@ -16,20 +16,28 @@
         <h1 class="mx-auto my-5">
             智慧管家
         </h1>
+        <h1 class="mx-auto my-5" id="temp">
+            none
+        </h1>
+        <h1 class="mx-auto my-5" id="humi">
+            none
+        </h1>
     </div>
 
 
     <script>
-        var tempValue;
-        var humidity;
-
-
+        var tempValue = document.getElementById("temp");
+        var humidity = document.getElementById("humi");
+        
         var clickbtn = document.getElementById("clickbtn");
         setup();
         var PIR = cpf.get("socket d2");
         ui.set("socket d2", PIR);
         tempValue = cpf.get("DHT11", "d6", "dht11temp");
         humidity = cpf.get("DHT11", "d6", "dht11humi");
+        console.log(PIR);
+        console.log(tempValue);
+        console.log(humidity);
 
         if (PIR == 1) {
             cpf.initSpeechRecognition("cmn-Hant-TW");
