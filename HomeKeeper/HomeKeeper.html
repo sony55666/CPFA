@@ -29,10 +29,8 @@
         var tempValue = document.getElementById("temp");
         var humidity = document.getElementById("humi");
 
-        var clickbtn = document.getElementById("clickbtn");
         setup();
-        var PIR = ui.get("socket d2");
-        cpf.set("socket d2", PIR);
+        var PIR = cpf.get("d2");
         tempValue = cpf.get("DHT11", "d6", "dht11temp");
         humidity = cpf.get("DHT11", "d6", "dht11humi");
         console.log(PIR);
@@ -50,7 +48,8 @@
 
         function setup() {
             if (cpf) {
-                cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 6, "DHT11"]');
+                cpf.setPinMode(
+                    '["resetPin"], ["setPinMode", "digital", 6, "DHT11"],["setPinMode", "digital", 7,"INPUT"]');
             }
         }
     </script>
