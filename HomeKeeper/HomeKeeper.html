@@ -45,8 +45,8 @@
 
         function loop() {
             pir = cpf.get("d2");
-            tempValue = cpf.get("DHT11", "d6", "dht11temp");
-            humidity = cpf.get("DHT11", "d6", "dht11humi");
+            tempValue = cpf.get("DHT22", "d6", "dht22temp");
+            humidity = cpf.get("DHT22", "d6", "dht22humi");
             document.getElementById("temp").innerHTML = tempValue;
             document.getElementById("humi").innerHTML = humidity;
             document.getElementById("pir").innerHTML = pir;
@@ -70,7 +70,7 @@
         function setup() {
             if (cpf) {
                 cpf.setPinMode(
-                    '["resetPin"], ["setPinMode", "digital", 6, "DHT11"],["setPinMode", "digital", 2,"INPUT"],["grove_rgblcd_begin", 16, 2]'
+                    '["resetPin"], ["setPinMode", "digital", 6, "DHT22"],["setPinMode", "digital", 2,"INPUT"],["grove_rgblcd_begin", 16, 2]'
                 );
             }
         }
