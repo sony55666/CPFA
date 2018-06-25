@@ -51,7 +51,7 @@
             document.getElementById("humi").innerHTML = humidity;
             document.getElementById("pir").innerHTML = pir;
             cpf.request('["grove_rgblcd_clear"]');
-            cpf.request('["grove_rgblcd_print", 0, 1, "' + "溫度:" + tempValue + "  濕度:" + humidity + '"]');
+            cpf.request(`["grove_rgblcd_print", 0, 1, "溫度:${tempValue}，濕度:${humidity}"]`);
             console.log(pir);
             console.log(tempValue);
             console.log(humidity);
