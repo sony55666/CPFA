@@ -53,6 +53,9 @@
             console.log(pir);
             console.log(tempValue);
             console.log(humidity);
+            cpf.request('["grove_rgblcd_set_rgb", 255, 255, 255]');
+            cpf.request('["grove_rgblcd_clear"]');
+            cpf.request('["grove_rgblcd_print", 0, 1, "' + tempValue + "℃" + humidity + "RH" + '"]');
 
             if (pir == 1) {
                 cpf.SetSpeech("Off", "cmn-Hant-TW", "您好，目前外面的溫度為" + tempValue + "濕度為" + humidity, 1, 1);
