@@ -17,22 +17,36 @@
             智慧管家
         </h1>
     </div>
-    <div class="row">
-        <h1 class="mx-auto my-5">
-            溫度:
-            <span id="temp">
+    <div class="list-group">
+        <div class="list-group-item list-group-item-action" style="display: flex;">
+            <h1 class="mx-auto mx-auto my-5" id="day">
                 none
-            </span>
-        </h1>
-        <h1 class="mx-auto my-5">
-            濕度:
-            <span id="humi">
+            </h1>
+        </div>
+        <div class="list-group-item list-group-item-action" style="display: flex;">
+            <img id="img" class="mx-auto my-5" src="img/house.png" alt="">
+        </div>
+        <div class="list-group-item list-group-item-danger">
+            <h1 class="mx-auto my-5">
+                溫度:
+                <span id="temp">
+                    none
+                </span>
+            </h1>
+        </div>
+        <div class="list-group-item list-group-item-info">
+            <h1 class="mx-auto my-5">
+                濕度:
+                <span id="humi">
+                    none
+                </span>
+            </h1>
+        </div>
+        <div class="list-group-item list-group-item-warning">
+            <h1 class="mx-auto my-5" id="hint">
                 none
-            </span>
-        </h1>
-        <h1 class="mx-auto my-5" id="pir">
-            none
-        </h1>
+            </h1>
+        </div>
     </div>
 
 
@@ -43,22 +57,38 @@
         var tempValue;
         var humidity;
         var pir;
-        var day = new Date();
-
         function loop() {
-            pir = cpf.get("d2");
+            pir = 1;
             tempValue = cpf.get("DHT22", "d6", "dht22temp");
             humidity = cpf.get("DHT22", "d6", "dht22humi");
             document.getElementById("temp").innerHTML = tempValue;
             document.getElementById("humi").innerHTML = humidity;
-            document.getElementById("pir").innerHTML = pir;
-            cpf.request('["grove_rgblcd_set_rgb", 255, 255, 255]');
-            cpf.request('["grove_rgblcd_clear"]');
-            cpf.request('["grove_rgblcd_print", 0, 1, "'+ day.getFullYear() + "/" +(day.getMonth()+1)+ "/" +day.getDate()+'"]');
+
+            var day = new Date();
+            // cpf.request('["grove_rgblcd_set_rgb", 255, 255, 255]');
+            // cpf.request('["grove_rgblcd_clear"]');
+            // cpf.request('["grove_rgblcd_print", 0, 1, "' + day.getFullYear() + "/" + (day.getMonth() + 1) + "/" + day.getDate() + '"]');
+            console.log(`${day.getFullYear()}/${day.getMonth() + 1}/${day.getDate()}`)
+            document.getElementById("day").innerHTML = `${day.getFullYear()}/${day.getMonth() + 1}/${day.getDate()}`;
             if (pir == 1) {
                 cpf.SetSpeech("Off", "cmn-Hant-TW", "您好，目前外面的溫度為" + tempValue + "濕度為" + humidity, 1, 1);
                 console.log("您好  目前外面的溫度為" + tempValue + "濕度" + humidity);
-                setTimeout("loop()", 15000);
+                setTimeout(function () {
+                    if (humidity >= 80) {
+                        document.getElementById("hint").innerHTML = "建議您，出門前請帶把傘，祝您有美好的一天!";
+                        cpf.SetSpeech("Off", "cmn-Hant-TW", "建議您，出門前請帶把傘，祝您有美好的一天!", 1, 1);
+                        console.log("建議您，出門前請帶把傘");
+                        document.getElementById("img").src = "img/umbrella.png";
+
+                    } else {
+                        document.getElementById("hint").innerHTML = "祝您有美好的一天!";
+                        cpf.SetSpeech("Off", "cmn-Hant-TW", "祝您有美好的一天!", 1, 1);
+                        document.getElementById("img").src = "img/sun.png";
+                        console.log("祝您有美好的一天!");
+                    }
+                }, 6000);
+
+                setTimeout("loop()", 17000);
             } else {
                 setTimeout("loop()", 1500);
             }
@@ -68,7 +98,7 @@
 
         function setup() {
             if (cpf) {
-                cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 6, "DHT22"],["setPinMode", "digital", 2,"INPUT"],["grove_rgblcd_begin", 16, 2]');
+                cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 6, "DHT22"],["setPinMode", "digital", 2,"INPUT"]');
             }
         }
     </script>
