@@ -38,7 +38,7 @@
 
     <script>
         setup();
-        cpf.request('["grove_rgblcd_set_rgb", 255, 0, 0]');
+        cpf.request('["grove_rgblcd_set_rgb",  255, 255, 255]');
         var tempValue;
         var humidity;
         var pir;
@@ -51,14 +51,15 @@
             document.getElementById("humi").innerHTML = humidity;
             document.getElementById("pir").innerHTML = pir;
             cpf.request('["grove_rgblcd_clear"]');
-            cpf.request(`["grove_rgblcd_print", 0, 1, "溫度:${tempValue}，濕度:${humidity}"]`);
+            cpf.request('["grove_rgblcd_display", 1]');
+            cpf.request('["grove_rgblcd_print", 0, 1, "' + tempValue + "℃  /" + humidity + "RH" + '"]');
             console.log(pir);
             console.log(tempValue);
             console.log(humidity);
 
             if (pir == 1) {
-                cpf.SetSpeech("Off", "cmn-Hant-TW", `您好，目前外面的溫度為 ${tempValue} 濕度為${humidity}`, 1, 1);
-                console.log(`您好  目前外面的溫度為 ${tempValue} 濕度${humidity}`);
+                cpf.SetSpeech("Off", "cmn-Hant-TW", "您好，目前外面的溫度為" + tempValue + "濕度為" + humidity, 1, 1);
+                console.log("您好  目前外面的溫度為" + tempValue + "濕度" + humidity);
                 setTimeout(function () {}, 10000);
             } else {
                 setTimeout("loop()", 1500);
