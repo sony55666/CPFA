@@ -56,10 +56,11 @@
             if (pir == 1) {
                 cpf.SetSpeech("Off", "cmn-Hant-TW", `您好，目前外面的溫度為 ${tempValue} 濕度為${humidity}`, 1, 1);
                 console.log(`您好  目前外面的溫度為 ${tempValue} 濕度${humidity}`);
+                setTimeout("loop()", 8000);
             } else {
 
             }
-            setTimeout("loop()", 500);
+            setTimeout("loop()", 1500);
         }
 
         loop();
