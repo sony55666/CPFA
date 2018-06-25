@@ -23,21 +23,22 @@
 
         function setup() {
             if (cpf) {
-                cpf.setPinMode('["resetPin"],["setPinMode", "digital", 6, "PWM"],["grove_newChainableLED", 7, 8, 1]');
+                cpf.setPinMode('["resetPin"],["grove_rgblcd_begin", 16, 2]');
             }
         }
 
 
         function loop() {
-            if (cpf) {
-                for (var speed = 0; speed <= 255; speed + 20) {
-                    console.log(speed);
-                    cpf.request('["analogWrite", 6, speed]');
-                    cpf.request('["grove_setColorRGB", 0, speed, speed, speed]');
-                }
-            }
-            setTimeout(loop, 1000);
+            var day = new Date();
+            
+            cpf.request('["grove_rgblcd_set_rgb", 255, 255, 255]');
+            cpf.request('["grove_rgblcd_clear"]');
+            cpf.request('["grove_rgblcd_print", 0, 1, "'+ day.getFullYear() + "/" +(day.getMonth()+1)+ "/" +day.getDate()+'"]');
+
+            setTimeout(loop, 5000);
         }
+
+
         loop();
     </script>
 
