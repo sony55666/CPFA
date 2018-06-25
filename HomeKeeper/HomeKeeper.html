@@ -44,7 +44,7 @@
                         '["resetPin"],["grove_rgblcd_begin", 16, 2],["setPinMode", "digital", 6, "DHT22"],["setPinMode", "digital", 2,"INPUT"]'
                     );
                 } catch (error) {
-                    console.log(error);
+                    console.log(1, error);
                 }
             }
         }
@@ -56,28 +56,35 @@
         var pir;
 
         function loop() {
-            pir = cpf.get("d2");
-            tempValue = cpf.get("DHT22", "d6", "dht22temp");
-            humidity = cpf.get("DHT22", "d6", "dht22humi");
-            document.getElementById("temp").innerHTML = tempValue;
-            document.getElementById("humi").innerHTML = humidity;
-            document.getElementById("pir").innerHTML = pir;
+            try {
+                pir = cpf.get("d2");
+                tempValue = cpf.get("DHT22", "d6", "dht22temp");
+                humidity = cpf.get("DHT22", "d6", "dht22humi");
+            } catch (error) {
+                console.log(3, error)
+            }
+            try {
+                document.getElementById("temp").innerHTML = tempValue;
+                document.getElementById("humi").innerHTML = humidity;
+                document.getElementById("pir").innerHTML = pir;
+            } catch (error) {
+                console.log(4, error)
+            }
             try {
                 cpf.request('["grove_rgblcd_set_rgb", 255, 255, 255]');
                 cpf.request('["grove_rgblcd_clear"]');
                 cpf.request('["grove_rgblcd_print", 0, 1, "' + tempValue + ' ' + humidity + '"]');
             } catch (error) {
-                console.log(error);
+                console.log(2, error);
             }
             if (pir == 1) {
                 cpf.SetSpeech("Off", "cmn-Hant-TW", "您好，目前外面的溫度為" + tempValue + "濕度為" + humidity, 1, 1);
                 console.log("您好  目前外面的溫度為" + tempValue + "濕度" + humidity);
-                setTimeout(loop, 15000);
-            } else {
-                setTimeout(loop, 1500);
+                setTimeout(loop(), 15000);
+                return;
             }
+            setTimeout(loop(), 1500);
         }
-
         loop();
     </script>
 </body>
