@@ -39,8 +39,13 @@
     <script>
         function setup() {
             if (cpf) {
-                console.log("8787");
-                cpf.setPinMode('["resetPin"],["grove_rgblcd_begin", 16, 2],["setPinMode", "digital", 6, "DHT22"],["setPinMode", "digital", 2,"INPUT"]');
+                try {
+                    cpf.setPinMode(
+                        '["resetPin"],["grove_rgblcd_begin", 16, 2],["setPinMode", "digital", 6, "DHT22"],["setPinMode", "digital", 2,"INPUT"]'
+                    );
+                } catch (error) {
+                    console.log(error);
+                }
             }
         }
 
@@ -57,9 +62,13 @@
             document.getElementById("temp").innerHTML = tempValue;
             document.getElementById("humi").innerHTML = humidity;
             document.getElementById("pir").innerHTML = pir;
-            cpf.request('["grove_rgblcd_set_rgb", 255, 255, 255]');
-            cpf.request('["grove_rgblcd_clear"]');
-            cpf.request('["grove_rgblcd_print", 0, 1, "' + tempValue + ' ' + humidity + '"]');
+            try {
+                cpf.request('["grove_rgblcd_set_rgb", 255, 255, 255]');
+                cpf.request('["grove_rgblcd_clear"]');
+                cpf.request('["grove_rgblcd_print", 0, 1, "' + tempValue + ' ' + humidity + '"]');
+            } catch (error) {
+                console.log(error);
+            }
             if (pir == 1) {
                 cpf.SetSpeech("Off", "cmn-Hant-TW", "您好，目前外面的溫度為" + tempValue + "濕度為" + humidity, 1, 1);
                 console.log("您好  目前外面的溫度為" + tempValue + "濕度" + humidity);
