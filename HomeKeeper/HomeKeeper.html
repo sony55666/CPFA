@@ -38,7 +38,6 @@
 
     <script>
         setup();
-        cpf.request('["grove_rgblcd_set_rgb", 255, 0, 0]');
         var tempValue;
         var humidity;
         var pir;
@@ -50,8 +49,6 @@
             document.getElementById("temp").innerHTML = tempValue;
             document.getElementById("humi").innerHTML = humidity;
             document.getElementById("pir").innerHTML = pir;
-            cpf.request('["grove_rgblcd_clear"]');
-            cpf.request(`["grove_rgblcd_print", 0, 1, "溫度:${tempValue}，濕度:${humidity}"]`);
             console.log(pir);
             console.log(tempValue);
             console.log(humidity);
@@ -69,7 +66,7 @@
 
         function setup() {
             if (cpf) {
-                cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 6, "DHT22"],["setPinMode", "digital", 2,"INPUT"],["grove_rgblcd_begin", 16, 2]');
+                cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 6, "DHT22"],["setPinMode", "digital", 2,"INPUT"]');
             }
         }
     </script>
