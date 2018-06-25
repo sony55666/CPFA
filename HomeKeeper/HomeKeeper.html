@@ -38,6 +38,7 @@
 
     <script>
         setup();
+        cpf.request('["grove_rgblcd_set_rgb", 255, 0, 0]');
         var tempValue;
         var humidity;
         var pir;
@@ -49,6 +50,8 @@
             document.getElementById("temp").innerHTML = tempValue;
             document.getElementById("humi").innerHTML = humidity;
             document.getElementById("pir").innerHTML = pir;
+            cpf.request('["grove_rgblcd_clear"]');
+            cpf.request(`["grove_rgblcd_print", 0, 1, "溫度:${tempValue}，濕度:${humidity}"]`);
             console.log(pir);
             console.log(tempValue);
             console.log(humidity);
@@ -56,18 +59,19 @@
             if (pir == 1) {
                 cpf.SetSpeech("Off", "cmn-Hant-TW", `您好，目前外面的溫度為 ${tempValue} 濕度為${humidity}`, 1, 1);
                 console.log(`您好  目前外面的溫度為 ${tempValue} 濕度${humidity}`);
-                setTimeout("loop()", 8000);
+                setTimeout(function () {}, 10000);
             } else {
-
+                setTimeout("loop()", 1500);
             }
-            setTimeout("loop()", 1500);
         }
 
         loop();
 
         function setup() {
             if (cpf) {
-                cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 6, "DHT22"],["setPinMode", "digital", 2,"INPUT"]');
+                cpf.setPinMode(
+                    '["resetPin"], ["setPinMode", "digital", 6, "DHT22"],["setPinMode", "digital", 2,"INPUT"],["grove_rgblcd_begin", 16, 2]'
+                );
             }
         }
     </script>
