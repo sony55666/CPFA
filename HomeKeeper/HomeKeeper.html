@@ -50,9 +50,6 @@
             document.getElementById("temp").innerHTML = tempValue;
             document.getElementById("humi").innerHTML = humidity;
             document.getElementById("pir").innerHTML = pir;
-            cpf.request('["grove_rgblcd_set_rgb", 255, 255, 255]');
-            cpf.request('["grove_rgblcd_clear"]');
-            cpf.request('["grove_rgblcd_print", 0, 1, "' + tempValue + "℃" + humidity + "RH" + '"]');
             console.log(pir);
             console.log(tempValue);
             console.log(humidity);
