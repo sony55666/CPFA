@@ -37,6 +37,13 @@
 
 
     <script>
+        function setup() {
+            if (cpf) {
+                console.log("8787");
+                cpf.setPinMode('["resetPin"],["grove_rgblcd_set_rgb", 255, 255, 255] ,["setPinMode", "digital", 6, "DHT22"],["setPinMode", "digital", 2,"INPUT"]');
+            }
+        }
+
         setup();
 
         var tempValue;
@@ -67,13 +74,6 @@
         }
 
         loop();
-
-        function setup() {
-            if (cpf) {
-                console.log("8787");
-                cpf.setPinMode('["resetPin"],["grove_rgblcd_begin", 16, 2],["setPinMode", "digital", 6, "DHT22"],["setPinMode", "digital", 2,"INPUT"]');
-            }
-        }
     </script>
 </body>
 
