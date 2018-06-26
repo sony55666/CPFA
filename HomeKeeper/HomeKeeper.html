@@ -102,9 +102,11 @@
 
         function setup() {
             if (cpf) {
-                cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 6, "DHT22"],["setPinMode", "digital", 2,"INPUT"],["grove_rgblcd_begin", 16, 2]');
+                cpf.setPinMode('["resetPin"], ["setPinMode", "digital", 6, "DHT22"],["setPinMode", "digital", 2,"INPUT"]');
+                cpf.setPinMode('["grove_rgblcd_begin", 16, 2]');
                 cpf.request('["grove_rgblcd_set_rgb", 255, 255, 255]');
                 cpf.request('["grove_rgblcd_display", 1]');
+                console.log(8787);
             }
 
 
