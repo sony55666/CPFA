@@ -25,19 +25,15 @@
         function setup() {
             if (cpf) {
                 cpf.setPinMode('["resetPin"],["grove_rgblcd_begin", 16, 2]');
-                cpf.request('["grove_rgblcd_clear"]');
-                cpf.request('["grove_rgblcd_print", 0, 1, "Hello World"]');
             }
         }
 
 
         function loop() {
             var day = new Date();
-
-            cpf.request('["grove_rgblcd_set_rgb", 255, 255, 255]');
-            cpf.request('["grove_rgblcd_clear"]');
-            cpf.request('["grove_rgblcd_print", 0, 1, "' + day.getFullYear() + "/" + (day.getMonth() + 1) + "/" + day.getDate() +'"]');
-
+            cpf.request('["grove_rgblcd_set_rgb", 255, 0, 0]');
+            cpf.request('["grove_rgblcd_print", 0, 1, "Hello World"]');
+            cpf.request('["grove_rgblcd_display", 1]');
             setTimeout(loop, 5000);
         }
 
