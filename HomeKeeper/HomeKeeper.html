@@ -65,9 +65,9 @@
             document.getElementById("humi").innerHTML = humidity;
 
             var day = new Date();
-            // cpf.request('["grove_rgblcd_set_rgb", 255, 255, 255]');
-            // cpf.request('["grove_rgblcd_clear"]');
-            // cpf.request('["grove_rgblcd_print", 0, 1, "' + day.getFullYear() + "/" + (day.getMonth() + 1) + "/" + day.getDate() + '"]');
+            cpf.request('["grove_rgblcd_set_rgb", 255, 255, 255]');
+            cpf.request('["grove_rgblcd_clear"]');
+            cpf.request('["grove_rgblcd_print", 0, 1, "' + day.getFullYear() + "/" + (day.getMonth() + 1) + "/" + day.getDate() + '"]');
             console.log(`${day.getFullYear()}/${day.getMonth() + 1}/${day.getDate()}`)
             document.getElementById("day").innerHTML = `${day.getFullYear()}/${day.getMonth() + 1}/${day.getDate()}`;
             if (pir == 1) {
@@ -105,7 +105,7 @@
         function setup() {
             if (cpf) {
                 cpf.setPinMode(
-                    '["resetPin"], ["setPinMode", "digital", 6, "DHT22"],["setPinMode", "digital", 2,"INPUT"]');
+                    '["resetPin"], ["setPinMode", "digital", 6, "DHT22"],["setPinMode", "digital", 2,"INPUT"],["grove_rgblcd_begin", 16, 2]');
             }
         }
     </script>
