@@ -58,7 +58,7 @@
         var humidity;
         var pir;
         function loop() {
-            pir = 1;
+            pir = cpf.get("d2");
             tempValue = cpf.get("DHT22", "d6", "dht22temp");
             humidity = cpf.get("DHT22", "d6", "dht22humi");
             document.getElementById("temp").innerHTML = tempValue;
